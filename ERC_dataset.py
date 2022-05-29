@@ -3,8 +3,8 @@ from torch.nn.utils.rnn import pack_sequence
 import random
 import pandas as pd
     
-# class MELD_loader(Dataset):
-class NLP_loader(Dataset):
+class MELD_loader(Dataset):
+#class NLP_loader(Dataset):
     def __init__(self, txt_file, dataclass):
         self.dialogs = []
 
@@ -68,7 +68,8 @@ class NLP_loader(Dataset):
         return self.dialogs[idx], self.labelList, self.sentidict
     
     
-class Emory_loader(Dataset):
+# class Emory_loader(Dataset):
+class NLP_loader(Dataset):
     def __init__(self, txt_file, dataclass):
         self.dialogs = []
         
@@ -80,8 +81,10 @@ class Emory_loader(Dataset):
         pos = ['Joyful', 'Peaceful', 'Powerful']
         neg = ['Mad', 'Sad', 'Scared']
         neu = ['Neutral']
-        emodict = {'Joyful': "joy", 'Mad': "mad", 'Peaceful': "peaceful", 'Powerful': "powerful", 'Neutral': "neutral", 'Sad': "sad", 'Scared': 'scared'}
-        self.sentidict = {'positive': pos, 'negative': neg, 'neutral': neu}
+        emodict = {'sad': 0, 'trusting': 1, 'terrified': 2, 'caring': 3, 'disappointed': 4,'faithful': 5, 'joyful': 6, 'jealous': 7, 'disgusted': 8, 'surprised': 9,
+        'ashamed': 10, 'afraid': 11, 'impressed': 12, 'sentimental': 13, 'devastated': 14, 'excited': 15, 'anticipating': 16, 'annoyed': 17, 'anxious': 18,
+        'furious': 19, 'content': 20, 'lonely': 21, 'angry': 22, 'confident': 23, 'apprehensive': 24, 'guilty': 25, 'embarrassed': 26, 'grateful': 27,
+        'hopeful': 28, 'proud': 29, 'prepared': 30, 'nostalgic': 31}
         temp_speakerList = []
         context = []
         context_speaker = []        
