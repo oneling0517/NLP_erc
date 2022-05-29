@@ -1,15 +1,22 @@
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pack_sequence
 import random
+import pandas as pd
     
 # class MELD_loader(Dataset):
 class NLP_loader(Dataset):
     def __init__(self, txt_file, dataclass):
         self.dialogs = []
+
+        train_path = "/content/dataset/fixed_train.csv"
+        test_path = "/content/dataset/fixed_test.csv"
+        val_path = "/content/dataset/fixed_valid.csv"
+
+        data_train = pd.read_csv(train_path, encoding='utf-8')
+        data_valid = pd.read_csv(val_path, encoding='utf-8')
+        data_test = pd.read_csv(test_path, encoding='utf-8')
         
-        f = open(txt_file, 'r')
-        dataset = f.readlines()
-        f.close()
+        dataset = pd.DataFrame(data={"text": data_train.prompt.tolist(), "class": data_train.label})
         
         temp_speakerList = []
         context = []
