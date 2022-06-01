@@ -73,65 +73,81 @@ class NLP_loader(Dataset):
     def __init__(self, txt_file, dataclass):
         self.dialogs = []
         
-        f = open(txt_file, 'r')
-        dataset = f.readlines()
-        f.close()
+        train_path = "/content/dataset/fixed_train.csv"
+        test_path = "/content/dataset/fixed_test.csv"
+        val_path = "/content/dataset/fixed_valid.csv"
+
+        data_train = pd.read_csv(train_path, encoding='utf-8')
+        data_valid = pd.read_csv(val_path, encoding='utf-8')
+        data_test = pd.read_csv(test_path, encoding='utf-8')
+
+        data_train = np.array(data_train) #np.ndarray()
+        dataset = data_train.tolist()
+        
         """sentiment"""
-        # 'Joyful', 'Mad', 'Neutral', 'Peaceful', 'Powerful', 'Sad', 'Scared'
-        pos = ['Joyful', 'Peaceful', 'Powerful']
-        neg = ['Mad', 'Sad', 'Scared']
-        neu = ['Neutral']
+        pos = ["joyful", "trusting", "faithful", "excited", "anticipating", "content", "confident", "grateful", "hopeful"]
+        neg = ["sad", "terrified", "disappointed", "jealous", "disgusted", "ashamed", "afraid", "sentimental", "devastated", "annoyed", "anxious", "furious", "lonely", "angry", "apprehensive", "guilty"]
+        neu = ["caring", "surprised", "impressed", "embarrassed", "proud", "prepared", "nostalgic"]
         emodict = {'sad': 0, 'trusting': 1, 'terrified': 2, 'caring': 3, 'disappointed': 4,'faithful': 5, 'joyful': 6, 'jealous': 7, 'disgusted': 8, 'surprised': 9,
         'ashamed': 10, 'afraid': 11, 'impressed': 12, 'sentimental': 13, 'devastated': 14, 'excited': 15, 'anticipating': 16, 'annoyed': 17, 'anxious': 18,
         'furious': 19, 'content': 20, 'lonely': 21, 'angry': 22, 'confident': 23, 'apprehensive': 24, 'guilty': 25, 'embarrassed': 26, 'grateful': 27,
         'hopeful': 28, 'proud': 29, 'prepared': 30, 'nostalgic': 31}
-        temp_speakerList = []
+        
+        #temp_speakerList = []
+        #context_speaker = []        
+        #self.speakerNum = []
+        
         context = []
-        context_speaker = []        
-        self.speakerNum = []
         self.emoSet = set()
-        self.sentiSet = set()
-        for i, data in enumerate(dataset):
-            if data == '\n' and len(self.dialogs) > 0:
-                self.speakerNum.append(len(temp_speakerList))
-                temp_speakerList = []
-                context = []
-                context_speaker = []
-                continue
-            speaker, utt, emo = data.strip().split('\t')
-            context.append(utt)
+        #self.sentiSet = set()
+        
+        for i range(len(dataset)):
+            if dataset[i][1] == 1:
+                #speakerNum.append(len(temp_speakerList))
+                context = [dataset[i][2]]
+                #continue
+              #speaker, utt, emo = data.strip().split('\t')
+              utt = dataset[i][3]
+              #print("utt:",utt)
+              emo = dataset[i][4]
+              #print("emo:",emo)
+              context.append(utt)
+              #print("context:",context)
             
-            if emo in pos:
-                senti = "positive"
-            elif emo in neg:
-                senti = "negative"
-            elif emo in neu:
-                senti = "neutral"
-            else:
-                print('ERROR emotion&sentiment')
+#             if emo in pos:
+#                 senti = "positive"
+#             elif emo in neg:
+#                 senti = "negative"
+#             elif emo in neu:
+#                 senti = "neutral"
+#             else:
+#                 print('ERROR emotion&sentiment')
                 
-            if speaker not in temp_speakerList:
-                temp_speakerList.append(speaker)
-            speakerCLS = temp_speakerList.index(speaker)
-            context_speaker.append(speakerCLS)
+#             if speaker not in temp_speakerList:
+#                 temp_speakerList.append(speaker)
+#             speakerCLS = temp_speakerList.index(speaker)
+#             context_speaker.append(speakerCLS)
             
-            self.dialogs.append([context_speaker[:], context[:], emodict[emo], senti])
-            self.emoSet.add(emodict[emo])
+            #self.dialogs.append([context_speaker[:], context[:], emodict[emo], senti])
+            self.dialogs.append([context[:], emo, senti])
+            self.emoSet.add(emo)
             self.sentiSet.add(senti)
             
         self.emoList = sorted(self.emoSet)
-        self.sentiList = sorted(self.sentiSet)
+        #self.sentiList = sorted(self.sentiSet)
+        
         if dataclass == 'emotion':
             self.labelList = self.emoList
-        else:
-            self.labelList = self.sentiList        
-        self.speakerNum.append(len(temp_speakerList))
+#         else:
+#             self.labelList = self.sentiList        
+#         self.speakerNum.append(len(temp_speakerList))
         
     def __len__(self):
         return len(self.dialogs)
 
     def __getitem__(self, idx):
-        return self.dialogs[idx], self.labelList, self.sentidict
+        return self.dialogs[idx], self.labelList
+#         return self.dialogs[idx], self.labelList, self.sentidict
     
     
 class IEMOCAP_loader(Dataset):
