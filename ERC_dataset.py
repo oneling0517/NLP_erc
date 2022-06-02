@@ -2,6 +2,7 @@ from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pack_sequence
 import random
 import pandas as pd
+import numpy as np
     
 class MELD_loader(Dataset):
     def __init__(self, txt_file, dataclass):
