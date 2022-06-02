@@ -128,9 +128,9 @@ class NLP_loader(Dataset):
             elif sentiment in neg:
                 senti = "negative"
             elif sentiment in neu:
-                    senti = "neutral"
+                senti = "neutral"
             else:
-            print('ERROR emotion&sentiment')
+                print('ERROR emotion&sentiment')
                 
 #             if speaker not in temp_speakerList:
 #                 temp_speakerList.append(speaker)
