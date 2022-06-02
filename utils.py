@@ -67,7 +67,10 @@ def make_batch_roberta(sessions):
         now_speaker = context_speaker[-1]
         speaker_utt_list = []
         
+        context, emotion, sentiment = data
+        
         inputString = ""
+#         for turn, utt in enumerate(context):
         for turn, (speaker, utt) in enumerate(zip(context_speaker, context)):
             inputString += '<s' + str(speaker+1) + '> ' # s1, s2, s3...
             inputString += utt + " "
