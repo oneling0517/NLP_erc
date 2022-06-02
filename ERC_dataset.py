@@ -68,7 +68,6 @@ class MELD_loader(Dataset):
         return self.dialogs[idx], self.labelList, self.sentidict
     
     
-# class Emory_loader(Dataset):
 class NLP_loader(Dataset):
     def __init__(self, txt_file, dataclass):
         self.dialogs = []
@@ -112,26 +111,26 @@ class NLP_loader(Dataset):
                 context.append(dataset[i][2]) #prompt
                 #continue
               #speaker, utt, emo = data.strip().split('\t')
-              if dataset[i][1] % 2 != 0:
+            if dataset[i][1] % 2 != 0:
                 speaker = 1
-              else:
+            else:
                 speaker = 2
-              utt = dataset[i][3]
-              #print("utt:",utt)
-              emo = dataset[i][4]
-              #print("emo:",emo)
-              context.append(utt)
-              #print("context:",context)
-            
-              sentiment = list(emodict.keys())[list(emodict.values()).index(emo)]
-              if sentiment in pos:
+            utt = dataset[i][3]
+            #print("utt:",utt)
+            emo = dataset[i][4]
+            #print("emo:",emo)
+            context.append(utt)
+            #print("context:",context)
+
+            sentiment = list(emodict.keys())[list(emodict.values()).index(emo)]
+            if sentiment in pos:
                 senti = "positive"
-              elif sentiment in neg:
+            elif sentiment in neg:
                 senti = "negative"
-              elif sentiment in neu:
-                senti = "neutral"
-              else:
-                print('ERROR emotion&sentiment')
+            elif sentiment in neu:
+                    senti = "neutral"
+            else:
+            print('ERROR emotion&sentiment')
                 
 #             if speaker not in temp_speakerList:
 #                 temp_speakerList.append(speaker)
