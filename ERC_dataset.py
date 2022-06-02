@@ -86,7 +86,7 @@ class NLP_loader(Dataset):
         
         context = []
         self.emoSet = set()
-        #self.sentiSet = set()
+        self.sentiSet = set()
         
         for i in range(len(dataset)):
             if dataset[i][1] == 1: #一輪新的對話
@@ -135,8 +135,8 @@ class NLP_loader(Dataset):
         
         if dataclass == 'emotion':
             self.labelList = self.emoList
-#         else:
-#             self.labelList = self.sentiList        
+        else:
+            self.labelList = self.sentiList        
 #         self.speakerNum.append(len(temp_speakerList))
         
     def __len__(self):
