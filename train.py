@@ -49,7 +49,7 @@ def main():
         DATA_loader = MELD_loader
     elif dataset == 'NLP':
         data_path = './dataset/NLP/'
-        DATA_loader = Emory_loader
+        DATA_loader = NLP_loader
     elif dataset == 'iemocap':
         data_path = './dataset/iemocap/'
         DATA_loader = IEMOCAP_loader
