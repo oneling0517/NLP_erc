@@ -4,33 +4,20 @@ import random
 import pandas as pd
     
 class MELD_loader(Dataset):
-#class NLP_loader(Dataset):
     def __init__(self, txt_file, dataclass):
         self.dialogs = []
-
-        train_path = "/content/dataset/fixed_train.csv"
-        test_path = "/content/dataset/fixed_test.csv"
-        val_path = "/content/dataset/fixed_valid.csv"
-
-        data_train = pd.read_csv(train_path, encoding='utf-8')
-        data_valid = pd.read_csv(val_path, encoding='utf-8')
-        data_test = pd.read_csv(test_path, encoding='utf-8')
         
-        dataset = pd.DataFrame(data={"text": data_train.prompt.tolist(), "class": data_train.label})
+        f = open(txt_file, 'r')
+        dataset = f.readlines()
+        f.close()
         
         temp_speakerList = []
         context = []
         context_speaker = []
         self.speakerNum = []
         # 'anger', 'disgust', 'fear', 'joy', 'neutral', 'sadness', 'surprise'
-        emodict = {'sad': 0, 'trusting': 1, 'terrified': 2, 'caring': 3, 'disappointed': 4,'faithful': 5, 'joyful': 6, 'jealous': 7, 'disgusted': 8, 'surprised': 9,
-        'ashamed': 10, 'afraid': 11, 'impressed': 12, 'sentimental': 13, 'devastated': 14, 'excited': 15, 'anticipating': 16, 'annoyed': 17, 'anxious': 18,
-        'furious': 19, 'content': 20, 'lonely': 21, 'angry': 22, 'confident': 23, 'apprehensive': 24, 'guilty': 25, 'embarrassed': 26, 'grateful': 27,
-        'hopeful': 28, 'proud': 29, 'prepared': 30, 'nostalgic': 31}
-        self.sentidict = {
-        'positive': ["joyful", "trusting", "faithful", "excited", "anticipating", "content", "confident", "grateful", "hopeful"], 
-        'negative': ["sad", "terrified", "disappointed", "jealous", "disgusted", "ashamed", "afraid", "sentimental", "devastated", "annoyed", "anxious", "furious", "lonely", "angry", "apprehensive", "guilty"], 
-        'neutral': ["caring", "surprised", "impressed", "embarrassed", "proud", "prepared", "nostalgic"]}
+        emodict = {'anger': "anger", 'disgust': "disgust", 'fear': "fear", 'joy': "joy", 'neutral': "neutral", 'sadness': "sad", 'surprise': 'surprise'}
+        self.sentidict = {'positive': ["joy"], 'negative': ["anger", "disgust", "fear", "sadness"], 'neutral': ["neutral", "surprise"]}
         self.emoSet = set()
         self.sentiSet = set()
         for i, data in enumerate(dataset):
