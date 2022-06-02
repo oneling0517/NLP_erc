@@ -240,7 +240,7 @@ if __name__ == '__main__':
     parser.add_argument( "--lr", type=float, help = "learning rate", default = 1e-6) # 1e-5
     parser.add_argument( "--sample", type=float, help = "sampling trainign dataset", default = 1.0) # 
 
-    parser.add_argument( "--dataset", help = 'MELD or NLP or iemocap or dailydialog', default = 'MELD')
+    parser.add_argument( "--dataset", help = 'MELD or NLP or iemocap or dailydialog', default = 'NLP')
     
     parser.add_argument( "--pretrained", help = 'roberta-large or bert-large-uncased or gpt2 or gpt2-large or gpt2-medium', default = 'roberta-large')    
     parser.add_argument( "--initial", help = 'pretrained or scratch', default = 'pretrained')
