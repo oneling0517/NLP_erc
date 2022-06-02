@@ -47,8 +47,8 @@ def main():
             dataType = 'multi'
         data_path = './dataset/MELD/'+dataType+'/'
         DATA_loader = MELD_loader
-    elif dataset == 'EMORY':
-        data_path = './dataset/EMORY/'
+    elif dataset == 'NLP':
+        data_path = './dataset/NLP/'
         DATA_loader = Emory_loader
     elif dataset == 'iemocap':
         data_path = './dataset/iemocap/'
@@ -69,9 +69,9 @@ def main():
     else:
         freeze_type = 'no_freeze'
         
-    train_path = data_path + dataset+'_train.txt'
-    dev_path = data_path + dataset+'_dev.txt'
-    test_path = data_path + dataset+'_test.txt'
+    train_path = "/content/dataset/fixed_train.csv"
+    test_path = "/content/dataset/fixed_test.csv"
+    dev_path = "/content/dataset/fixed_valid.csv"
             
     train_dataset = DATA_loader(train_path, dataclass)
     if sample < 1.0:
@@ -240,7 +240,7 @@ if __name__ == '__main__':
     parser.add_argument( "--lr", type=float, help = "learning rate", default = 1e-6) # 1e-5
     parser.add_argument( "--sample", type=float, help = "sampling trainign dataset", default = 1.0) # 
 
-    parser.add_argument( "--dataset", help = 'MELD or EMORY or iemocap or dailydialog', default = 'MELD')
+    parser.add_argument( "--dataset", help = 'MELD or NLP or iemocap or dailydialog', default = 'MELD')
     
     parser.add_argument( "--pretrained", help = 'roberta-large or bert-large-uncased or gpt2 or gpt2-large or gpt2-medium', default = 'roberta-large')    
     parser.add_argument( "--initial", help = 'pretrained or scratch', default = 'pretrained')
