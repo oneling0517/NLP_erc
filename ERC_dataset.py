@@ -102,11 +102,20 @@ class NLP_loader(Dataset):
         #self.sentiSet = set()
         
         for i range(len(dataset)):
-            if dataset[i][1] == 1:
+            if dataset[i][1] == 1: #一輪新的對話
                 #speakerNum.append(len(temp_speakerList))
-                context = [dataset[i][2]]
+                context = []
+                context_speaker = []
+
+                speaker = 0
+                context_speaker.append(speaker)
+                context.append(dataset[i][2]) #prompt
                 #continue
               #speaker, utt, emo = data.strip().split('\t')
+              if dataset[i][1] % 2 != 0:
+                speaker = 1
+              else:
+                speaker = 2
               utt = dataset[i][3]
               #print("utt:",utt)
               emo = dataset[i][4]
@@ -127,10 +136,10 @@ class NLP_loader(Dataset):
 #             if speaker not in temp_speakerList:
 #                 temp_speakerList.append(speaker)
 #             speakerCLS = temp_speakerList.index(speaker)
-#             context_speaker.append(speakerCLS)
+            context_speaker.append(speaker)
             
-            #self.dialogs.append([context_speaker[:], context[:], emodict[emo], senti])
-            self.dialogs.append([context[:], emo, senti])
+            self.dialogs.append([context_speaker[:], context[:], emo, senti])
+#             self.dialogs.append([context[:], emo, senti])
             self.emoSet.add(emo)
             self.sentiSet.add(senti)
             
