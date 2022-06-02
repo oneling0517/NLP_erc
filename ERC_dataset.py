@@ -60,16 +60,16 @@ class NLP_loader(Dataset):
     def __init__(self, txt_file, dataclass):
         self.dialogs = []
         
-        train_path = "/content/dataset/fixed_train.csv"
-        test_path = "/content/dataset/fixed_test.csv"
-        val_path = "/content/dataset/fixed_valid.csv"
+#         train_path = "/content/dataset/fixed_train.csv"
+#         test_path = "/content/dataset/fixed_test.csv"
+#         val_path = "/content/dataset/fixed_valid.csv"
 
-        data_train = pd.read_csv(train_path, encoding='utf-8')
-        data_valid = pd.read_csv(val_path, encoding='utf-8')
-        data_test = pd.read_csv(test_path, encoding='utf-8')
+        data = pd.read_csv(train_path, encoding='utf-8')
+#         data_valid = pd.read_csv(val_path, encoding='utf-8')
+#         data_test = pd.read_csv(test_path, encoding='utf-8')
 
-        data_train = np.array(data_train) #np.ndarray()
-        dataset = data_train.tolist()
+        data = np.array(data) #np.ndarray()
+        dataset = data.tolist()
         
         """sentiment"""
         pos = ["joyful", "trusting", "faithful", "excited", "anticipating", "content", "confident", "grateful", "hopeful"]
