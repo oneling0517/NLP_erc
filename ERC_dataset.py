@@ -94,8 +94,8 @@ class NLP_loader(Dataset):
         'hopeful': 28, 'proud': 29, 'prepared': 30, 'nostalgic': 31}
         
         #temp_speakerList = []
-        #context_speaker = []        
-        #self.speakerNum = []
+        context_speaker = []        
+        self.speakerNum = []
         
         context = []
         self.emoSet = set()
@@ -114,14 +114,15 @@ class NLP_loader(Dataset):
               context.append(utt)
               #print("context:",context)
             
-#             if emo in pos:
-#                 senti = "positive"
-#             elif emo in neg:
-#                 senti = "negative"
-#             elif emo in neu:
-#                 senti = "neutral"
-#             else:
-#                 print('ERROR emotion&sentiment')
+              sentiment = list(emodict.keys())[list(emodict.values()).index(emo)]
+              if sentiment in pos:
+                senti = "positive"
+              elif sentiment in neg:
+                senti = "negative"
+              elif sentiment in neu:
+                senti = "neutral"
+              else:
+                print('ERROR emotion&sentiment')
                 
 #             if speaker not in temp_speakerList:
 #                 temp_speakerList.append(speaker)
