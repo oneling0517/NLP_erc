@@ -101,7 +101,7 @@ class NLP_loader(Dataset):
         self.emoSet = set()
         #self.sentiSet = set()
         
-        for i range(len(dataset)):
+        for i in range(len(dataset)):
             if dataset[i][1] == 1: #一輪新的對話
                 #speakerNum.append(len(temp_speakerList))
                 context = []
