@@ -64,7 +64,7 @@ class NLP_loader(Dataset):
         self.dialogs = []
         
 #         train_path = "/home/fiveone2521/NLP/fixed_train.csv"
-        test_path = "/home/htchou0324/oneling/fixed_test.csv"
+        test_path = "/home/fiveone2521/NLP/NLP_erc/fixed_test.csv"
 #         val_path = "/home/fiveone2521/NLP/fixed_valid.csv"
         
         data = pd.read_csv(data_path, encoding='utf-8')
