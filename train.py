@@ -50,7 +50,7 @@ def main():
         data_path = './dataset/MELD/'+dataType+'/'
         DATA_loader = MELD_loader
     elif dataset == 'NLP':
-        data_path = '/home/htchou0324/oneling/'
+        data_path = '/content/dataset/'
         DATA_loader = NLP_loader
     elif dataset == 'iemocap':
         data_path = './dataset/iemocap/'
@@ -71,9 +71,9 @@ def main():
     else:
         freeze_type = 'no_freeze'
         
-    train_path = "/home/htchou0324/oneling/fixed_train.csv"
-    test_path = "/home/htchou0324/oneling/fixed_test.csv"
-    dev_path = "/home/htchou0324/oneling/fixed_valid.csv"
+    train_path = "/content/dataset/fixed_train.csv"
+    test_path = "/content/dataset/fixed_test.csv"
+    dev_path = "/content/dataset/fixed_valid.csv"
             
     train_dataset = DATA_loader(train_path, dataclass)
     if sample < 1.0:
