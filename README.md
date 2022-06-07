@@ -19,9 +19,9 @@ os.chdir("/content/dataset")
 ```text
 +- content
     +- dataset
-        +- fixed_train.csv
-        +- fixed_test.csv
-        +- fixed_valid.csv
+        fixed_train.csv
+        fixed_test.csv
+        fixed_valid.csv
     ERC_dataset.py
     model.py
     test.py
