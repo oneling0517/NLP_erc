@@ -5,7 +5,7 @@ In this project, I have to implement emotion classification in the conversation.
 If you just want to predict the result, you can click [this link](https://colab.research.google.com/drive/1aPiXwO73QrMLHYFmq2_QCWQ7cPKXJfIQ?usp=sharing).
 
 ## Download Dataset
-If you use don't git clone to my GitHub, you can use this code to get the dataset.
+If you don't git clone to my GitHub, you can use this code to get the dataset.
 ```
 os.chdir("/content")
 !mkdir -p dataset
