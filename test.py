@@ -60,7 +60,7 @@ def main():
             data_path = os.path.join('dataset', dataset, dataType)
         else:
             data_path = os.path.join('dataset', dataset)
-        save_path = "/home/fiveone2521/NLP/NLP_erc/"
+        save_path = "/content/"
         print("###Save Path### ", save_path)
     
         test_path = "/home/fiveone2521/NLP/NLP_erc/fixed_test.csv"
