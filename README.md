@@ -2,7 +2,7 @@
 In this project, I have to implement emotion classification in the conversation. This is the final project of NLP in NYCU, and the competition is held on Kaggle.
 
 ## Inference
-If you just want to predict the result, you can just click [My colab link](https://colab.research.google.com/drive/1aPiXwO73QrMLHYFmq2_QCWQ7cPKXJfIQ?usp=sharing).
+If you just want to predict the result, you can click [this link](https://colab.research.google.com/drive/1aPiXwO73QrMLHYFmq2_QCWQ7cPKXJfIQ?usp=sharing).
 
 ## Download Dataset
 If you use don't git clone to my GitHub, you can use this code to get the dataset.
