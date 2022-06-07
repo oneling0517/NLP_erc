@@ -91,7 +91,7 @@ def main():
     
     """logging and path"""
 #     save_path = os.path.join(dataset+'_models', model_type, initial, freeze_type, dataclass, str(sample))
-    save_path = '/home/htchou0324/oneling/'
+    save_path = '/content/'
     
     print("###Save Path### ", save_path)
     log_path = os.path.join(save_path, 'train.log')
