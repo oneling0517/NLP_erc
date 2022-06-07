@@ -42,8 +42,6 @@ def main():
         last = False
     
     """Dataset Loading"""
-#     dataset_list = ['MELD', 'NLP', 'iemocap', 'dailydialog']
-#     DATA_loader_list = [MELD_loader, NLP_loader, IEMOCAP_loader, DD_loader]
     dataset_list = ["NLP"]
     DATA_loader_list = ["NLP_loader"]
     dataclass = args.cls
@@ -62,19 +60,11 @@ def main():
             data_path = os.path.join('dataset', dataset, dataType)
         else:
             data_path = os.path.join('dataset', dataset)
-#         save_path = os.path.join(dataset+'_models', model_type, initial, freeze_type, dataclass, str(sample))
-        save_path = "/home/htchou0324/oneling/"
+        save_path = "/home/fiveone2521/NLP/NLP_erc/"
         print("###Save Path### ", save_path)
     
-#         dev_path = os.path.join(data_path, dataset+'NLP_erc/fixed_valid.csv')
-#         test_path = os.path.join(data_path, dataset+'NLP_erc/fixed_test.csv')
-        test_path = "/home/htchou0324/oneling/fixed_test.csv"
-#         val_path = "/home/htchou0324/oneling/fixed_valid.csv"
+        test_path = "/home/fiveone2521/NLP/NLP_erc/fixed_test.csv"
 
-#         val_dataset = DATA_loader(dev_path, dataclass)
-#         val_dataloader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)        
-
-#         test_dataset = DATA_loader(test_path, dataclass)
         test_dataset = NLP_loader(test_path, dataclass)
         test_dataloader = DataLoader(dataset = test_dataset, batch_size=1, shuffle=False, num_workers=1, collate_fn=make_batch)
         
@@ -83,7 +73,6 @@ def main():
         clsNum = 32        
         model = ERC_model(model_type, clsNum, last, freeze, initial)
         modelfile = os.path.join(save_path, 'model.bin')
-#         model.load_state_dict(torch.load(modelfile), False)
         pretrained_dict = torch.load(modelfile)
         model_dict = model.state_dict()
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if (k in model_dict and 'fc' not in k )}
