@@ -44,11 +44,14 @@ Argument
 ```
 
 ## Test
-Use the model.bin from [Google Drive](https://drive.google.com/file/d/1EZUKbIjzva0G7L1nVRT1OK5enQBPquwx/view?usp=sharing).
+Use the model.bin from [Google Drive](https://drive.google.com/uc?id=1tN8WCNEXM8fhf9uda-kCfx4Ved_7dNx9).
 The final result will be in pred.csv
 ```
-os.chdir("/content/NLP_erc")
-!gdown --id '1EZUKbIjzva0G7L1nVRT1OK5enQBPquwx' --output model.bin
+os.chdir("/content/NLP_erc/")
+!gdown --id '1tN8WCNEXM8fhf9uda-kCfx4Ved_7dNx9' --output model.zip
+
+!apt-get install unzi
+!unzip -q 'model.zip' -d model
 ```
 ```
 !python3 test.py --initial pretained
