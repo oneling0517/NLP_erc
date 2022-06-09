@@ -63,7 +63,7 @@ def main():
         save_path = "/content/"
         print("###Save Path### ", save_path)
     
-        test_path = "/home/fiveone2521/NLP/NLP_erc/fixed_test.csv"
+        test_path = "/content/dataset/fixed_test.csv"
 
         test_dataset = NLP_loader(test_path, dataclass)
         test_dataloader = DataLoader(dataset = test_dataset, batch_size=1, shuffle=False, num_workers=1, collate_fn=make_batch)
@@ -72,7 +72,7 @@ def main():
         print("version:", transformers.__version__)
         clsNum = 32        
         model = ERC_model(model_type, clsNum, last, freeze, initial)
-        modelfile = os.path.join(save_path, 'model.bin')
+        modelfile = os.path.join(save_path, '/content/NLP_erc/model.bin')
         pretrained_dict = torch.load(modelfile)
         model_dict = model.state_dict()
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if (k in model_dict and 'fc' not in k )}
