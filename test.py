@@ -100,7 +100,7 @@ def main():
 #             test_acc, test_pred_list, test_label_list = _CalACC(model, test_dataloader)
             test_pred_list = _CalACC(model, test_dataloader) 
             pred = pd.DataFrame(columns = ["pred"], data = test_pred_list)
-            pred.to_csv("/home/htchou0324/oneling/pred.csv")
+            pred.to_csv("/content/pred.csv")
             #print(" test_pred_list: ", test_pred_list)
 #             test_pre, test_rec, test_fbeta, _ = precision_recall_fscore_support(test_label_list, test_pred_list, average='weighted')
 
